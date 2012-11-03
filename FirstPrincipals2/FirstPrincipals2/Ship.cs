@@ -91,33 +91,33 @@ namespace FirstPrincipals2
             // Yaw
             if (state.IsKeyDown(Keys.J))
             {
-                addTorque(Vector3.Up * 10.0f);
+                addTorque(this.up * 10.0f);
             }
             if (state.IsKeyDown(Keys.L))
             {
-                addTorque(Vector3.Up * -10.0f);
+                addTorque(this.up * -10.0f);
             }
             // End of Yaw
 
             //Pitch
             if (state.IsKeyDown(Keys.I))
             {
-                addTorque(Vector3.Right * 10.0f);
+                addTorque(this.right * 10.0f);
             }
             if (state.IsKeyDown(Keys.K))
             {
-                addTorque(Vector3.Right * -10.0f);
+                addTorque(this.right * -10.0f);
             }
             // End of Pitch
 
             if (state.IsKeyDown(Keys.Y))
             {
-                addTorque(Vector3.Forward * 10.0f);
+                addTorque(this.look * 10.0f);
             }
 
             if (state.IsKeyDown(Keys.H))
             {
-                addTorque(Vector3.Forward * -10.0f);
+                addTorque(this.look * -10.0f);
             }
 
             // Do the Newtonian integration
@@ -139,7 +139,7 @@ namespace FirstPrincipals2
 
             Quaternion w = new Quaternion(angularVelocity.X, angularVelocity.Y, angularVelocity.Z, 0);
             
-            quaternion += ((w * (timeDelta / 2.0f)) * Quaternion.Inverse(quaternion));
+            quaternion += ((w * (timeDelta / 2.0f)) * quaternion);
             quaternion.Normalize();
             torque = Vector3.Zero;
 
